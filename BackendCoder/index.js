@@ -21,14 +21,14 @@ class ProductManager {
 
     getArchivo = async () => {
         try {
-            const data = await fs.promises.readFile(this.path, "utf-8");
-            const productos = await JSON.parse(data);
-            return productos;
-        }catch (error) {
-            console.log("Se produjo un error al leer el archivo");
-            return [];
+          const data = await fs.promises.readFile(this.path, "utf-8");
+          const productos = JSON.parse(data);
+          return productos;
+        } catch (error) {
+          console.log("Se produjo un error al leer el archivo:", error);
+          throw error; // Propaga el error lanzando una excepción
         }
-    }
+      };
     
     addProduct = async (title, description, price, thumbnail, code, stock) =>  {
         // validacion 
@@ -41,7 +41,6 @@ class ProductManager {
         this.products = products;
 
         // cargar productos desde el archivo
-        console.log(this.products);
         const product = {
             title,
             description,
@@ -64,6 +63,7 @@ class ProductManager {
             // salida de datos
             this.products.push(product)
             await fs.promises.writeFile(this.path, JSON.stringify(this.products, null , "\t"));
+            console.log(this.products);
         }
         
     }
@@ -81,6 +81,7 @@ class ProductManager {
             return "not found"
         }
     }
+    
     updateProduct = async (id, prop, value) => {
         // entrada de datos
         const products = await this.getArchivo();
@@ -115,7 +116,7 @@ class ProductManager {
     }
     
 }
-
+export default ProductManager
 
 const manejo = new ProductManager();
 //Agregar productos
