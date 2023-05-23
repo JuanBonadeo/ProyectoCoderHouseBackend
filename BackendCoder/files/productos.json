@@ -27,21 +27,67 @@
 		"id": 3
 	},
 	{
-		"title": "PlayStation 5",
-		"description": "Consola",
-		"price": 900000,
-		"thumbnail": "url",
-		"code": "ps5jkl",
-		"stock": 12,
-		"id": 4
-	},
-	{
 		"title": "Canon EOS R6",
 		"description": "Cámara",
 		"price": 4000000,
 		"thumbnail": "url",
 		"code": "r6ghi",
 		"stock": 8,
+		"id": 4
+	},
+	{
+		"title": "PlayStation 5",
+		"description": "Consola",
+		"price": 900000,
+		"thumbnail": "url",
+		"code": "ps5jkl",
+		"stock": 12,
 		"id": 5
-	}
+	},
+	{
+		"title": "MacBook Pro 2023",
+		"description": "Portátil",
+		"price": 3000000,
+		"thumbnail": "url",
+		"code": "mbp2023xyz",
+		"stock": 7,
+		"id": 6
+	  },
+	  {
+		"title": "Sony Alpha a7R IV",
+		"description": "Cámara",
+		"price": 4500000,
+		"thumbnail": "url",
+		"code": "a7r4mno",
+		"stock": 4,
+		"id": 7
+	  },
+	  {
+		"title": "Samsung QLED 4K TV",
+		"description": "Televisor",
+		"price": 1500000,
+		"thumbnail": "url",
+		"code": "qled4k789",
+		"stock": 9,
+		"id": 8
+	  },
+	  {
+		"title": "Bose QuietComfort 35 II",
+		"description": "Auriculares inalámbricos con cancelación de ruido",
+		"price": 350000,
+		"thumbnail": "url",
+		"code": "qc35iiabc",
+		"stock": 20,
+		"id": 9
+	  },
+	  {
+		"title": "Nikon D850",
+		"description": "Cámara",
+		"price": 3500000,
+		"thumbnail": "url",
+		"code": "d850pqr",
+		"stock": 6,
+		"id": 10
+	  }
+	
 ]

@@ -68,20 +68,9 @@ class ProductManager {
         
     }
     getProductsById = async (id) => {
-        // entrada de datos
-        this.products = await this.getArchivo();
-        let productoBuscado = this.products.find(product=> product.id === id)
-        // validacion 
-        if(productoBuscado){
-            console.log("este es tu producto encontrado por id")
-            console.log(productoBuscado)
-            return productoBuscado
-        } else {
-            console.log("not found")
-            return "not found"
-        }
+        const list = await this.getProducts();
+        return list.find((prod) => prod.id == id) ?? "Producto no encontrado";
     }
-    
     updateProduct = async (id, prop, value) => {
         // entrada de datos
         const products = await this.getArchivo();
@@ -108,10 +97,12 @@ class ProductManager {
             console.log("el id no pertenece a ningun producto existente")
         }
         //elimina
-        const index = await this.products.findIndex((product) => product.id === id)
-        this.products.splice(index, 1)
+        const productFiltrados = products.filter((product) => {
+            return product.id != id
+        })
+       
         // salida de datos
-        await fs.promises.writeFile(this.path, JSON.stringify(this.products, null , "\t"));
+        await fs.promises.writeFile(this.path, JSON.stringify(productFiltrados, null , "\t"));
         console.log(`El producto con el id ${id} ah sido eliminado`);
     }
     
@@ -120,46 +111,46 @@ export default ProductManager
 
 const manejo = new ProductManager();
 //Agregar productos
-// manejo.addProduct(
-//     "Samsumg S21",
-//     "Celular",
-//     200000,
-//     "url",
-//     "abc123",
-//     10  
-// );
-// manejo.addProduct(
-//     "iPad Pro",
-//     "Tablet",
-//     1200000,
-//     "url",
-//     "pro123",
-//     15
-// );
-// manejo.addProduct(
-//     "Dell XPS 13",
-//     "Laptop",
-//     2500000,
-//     "url",
-//     "xps13def",
-//     5
-// );
-// manejo.addProduct(
-//     "Canon EOS R6",
-//     "Cámara",
-//     4000000,
-//     "url",
-//     "r6ghi",
-//     8
-// );
-// manejo.addProduct(
-//     "PlayStation 5",
-//     "Consola",
-//     900000,
-//     "url",
-//     "ps5jkl",
-//     12
-// );
+manejo.addProduct(
+    "Samsumg S21",
+    "Celular",
+    200000,
+    "url",
+    "abc123",
+    10  
+);
+manejo.addProduct(
+    "iPad Pro",
+    "Tablet",
+    1200000,
+    "url",
+    "pro123",
+    15
+);
+manejo.addProduct(
+    "Dell XPS 13",
+    "Laptop",
+    2500000,
+    "url",
+    "xps13def",
+    5
+);
+manejo.addProduct(
+    "Canon EOS R6",
+    "Cámara",
+    4000000,
+    "url",
+    "r6ghi",
+    8
+);
+manejo.addProduct(
+    "PlayStation 5",
+    "Consola",
+    900000,
+    "url",
+    "ps5jkl",
+    12
+);
 
 // Mostrar lista de productos
 // console.log("----------------------------------------------");
