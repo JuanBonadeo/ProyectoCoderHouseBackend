@@ -84,19 +84,15 @@ router.get("/", async (req, res) => {
 });
 router.get("/:cid", async (req, res) => {
   const cid = req.params.cid;
-  cartManager.getCarrito(cid).then((products) => {
-    const limit = parseInt(req.query.limit);
-
-    if (limit && !Number.isInteger(limit)) {
-      res.status(400).json({
-        error:
-          "El parámetro limit debe ser un numero mayor a 0 y debe ser un entero.",
-      });
-      return;
-    }
-
-    res.send(limit > 0 ? getLimitedArray(products, limit) : products);
+  try{
+    cartManager.getCarrito(cid).then((products) => {
+    res.send(products);
   });
+  } catch (error) {
+    console.error(error);
+    res.status(400).send(error.message);
+  }
+  
 });
 
 router.post("/add/:cid/:pid", async (req, res) => {

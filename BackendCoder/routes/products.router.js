@@ -17,7 +17,8 @@ export class ProductManager {
   getProducts = async () => {
     this.products = await this.getArchivo();
     if (this.products.length === 0) {
-      console.log("No hay productos cargados");
+      const errorMessage = "No hay productos cargados"
+      throw new Error(errorMessage);
       return [];
     } else {
       return this.products;
