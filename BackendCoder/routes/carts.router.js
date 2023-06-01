@@ -1,7 +1,7 @@
 import { error } from "console";
 import { Router } from "express";
 import fs from "fs";
-import { ProductManager } from "./products.router.js";
+import { ProductManager } from "../classes/productmanager.js";
 
 const router = Router();
 

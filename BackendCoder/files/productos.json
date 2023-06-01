@@ -1,112 +1,167 @@
 [
-  {
-    "title": "Samsumg S21",
-    "description": "Celular",
-    "code": "abc123",
-    "price": 200000,
-    "status": true,
-    "stock": 10,
-    "category": "Celulares",
-    "thumbnails": ["url1", "url2", "url3"],
-    "id": "1"
-  },
-  {
-    "title": "iPad Pro",
-    "description": "Tablet",
-    "code": "pro123",
-    "price": 1200000,
-    "status": true,
-    "stock": 15,
-    "category": "tablets",
-    "thumbnails": ["url1", "url2", "url3"],
-    "id": 2
-  },
-  {
-    "title": "Dell XPS 13",
-    "description": "Laptop",
-    "code": "xps13def",
-    "price": 2500000,
-    "status": true,
-    "stock": 5,
-    "category": "laptops",
-    "thumbnails": ["url1", "url2", "url3"],
-    "id": 3
-  },
-  {
-    "title": "Canon EOS R6",
-    "description": "Cámara",
-    "code": "r6ghi",
-    "price": 4000000,
-    "status": true,
-    "stock": 8,
-    "category": "camaras",
-    "thumbnails": ["url1", "url2", "url3"],
-    "id": 4
-  },
-  {
-    "title": "MacBook Pro 2023",
-    "description": "Portátil",
-    "code": "mbp2023xyz",
-    "price": 3000000,
-    "status": true,
-    "stock": 7,
-    "category": "laptops",
-    "thumbnails": ["url1", "url2", "url3"],
-    "id": 6
-  },
-  {
-    "title": "Sony Alpha a7R IV",
-    "description": "Cámara",
-    "code": "a7r4mno",
-    "price": 4500000,
-    "status": true,
-    "stock": 4,
-    "category": "camaras",
-    "thumbnails": ["url1", "url2", "url3"],
-    "id": 7
-  },
-  {
-    "title": "Samsung QLED 4K TV",
-    "description": "Televisor",
-    "code": "qled4k789",
-    "price": 1500000,
-    "status": true,
-    "stock": 9,
-    "category": "televisores",
-    "thumbnails": ["url1", "url2", "url3"],
-    "id": 8
-  },
-  {
-    "title": "Bose QuietComfort 35 II",
-    "description": "Auriculares inalámbricos con cancelación de ruido",
-    "code": "qc35iiabc",
-    "price": 350000,
-    "status": true,
-    "stock": 20,
-    "category": "auriculares",
-    "thumbnails": ["url1", "url2", "url3"],
-    "id": 9
-  },
-  {
-    "title": "Nikon D850",
-    "description": "Cámara",
-    "code": "d850pqr",
-    "price": 3500000,
-    "status": true,
-    "stock": 6,
-    "category": "camaras",
-    "thumbnails": ["url1", "url2", "url3"],
-    "id": 10
-  },
-  {
-    "title": "Sony PlayStation 5",
-    "description": "Consola de videojuegos",
-    "code": "hghgt567",
-    "price": 5000000,
-    "status": true,
-    "stock": 3,
-    "category": "videojusegos",
-    "thumbnails": ["url1", "url2", "url3"],
-    "id": 11
-  }
+	{
+		"title": "Samsumg S21",
+		"description": "Celular",
+		"code": "abc123",
+		"price": 200000,
+		"status": true,
+		"stock": 10,
+		"category": "Celulares",
+		"thumbnails": [
+			"url1",
+			"url2",
+			"url3"
+		],
+		"id": "1"
+	},
+	{
+		"title": "iPad Pro",
+		"description": "Tablet",
+		"code": "pro123",
+		"price": 1200000,
+		"status": true,
+		"stock": 15,
+		"category": "tablets",
+		"thumbnails": [
+			"url1",
+			"url2",
+			"url3"
+		],
+		"id": 2
+	},
+	{
+		"title": "Dell XPS 13",
+		"description": "Laptop",
+		"code": "xps13def",
+		"price": 2500000,
+		"status": true,
+		"stock": 5,
+		"category": "laptops",
+		"thumbnails": [
+			"url1",
+			"url2",
+			"url3"
+		],
+		"id": 3
+	},
+	{
+		"title": "Canon EOS R6",
+		"description": "Cámara",
+		"code": "r6ghi",
+		"price": 4000000,
+		"status": true,
+		"stock": 8,
+		"category": "camaras",
+		"thumbnails": [
+			"url1",
+			"url2",
+			"url3"
+		],
+		"id": 4
+	},
+	{
+		"title": "MacBook Pro 2023",
+		"description": "Portátil",
+		"code": "mbp2023xyz",
+		"price": 3000000,
+		"status": true,
+		"stock": 7,
+		"category": "laptops",
+		"thumbnails": [
+			"url1",
+			"url2",
+			"url3"
+		],
+		"id": 6
+	},
+	{
+		"title": "Sony Alpha a7R IV",
+		"description": "Cámara",
+		"code": "a7r4mno",
+		"price": 4500000,
+		"status": true,
+		"stock": 4,
+		"category": "camaras",
+		"thumbnails": [
+			"url1",
+			"url2",
+			"url3"
+		],
+		"id": 7
+	},
+	{
+		"title": "Samsung QLED 4K TV",
+		"description": "Televisor",
+		"code": "qled4k789",
+		"price": 1500000,
+		"status": true,
+		"stock": 9,
+		"category": "televisores",
+		"thumbnails": [
+			"url1",
+			"url2",
+			"url3"
+		],
+		"id": 8
+	},
+	{
+		"title": "Bose QuietComfort 35 II",
+		"description": "Auriculares inalámbricos con cancelación de ruido",
+		"code": "qc35iiabc",
+		"price": 350000,
+		"status": true,
+		"stock": 20,
+		"category": "auriculares",
+		"thumbnails": [
+			"url1",
+			"url2",
+			"url3"
+		],
+		"id": 9
+	},
+	{
+		"title": "Nikon D850",
+		"description": "Cámara",
+		"code": "d850pqr",
+		"price": 3500000,
+		"status": true,
+		"stock": 6,
+		"category": "camaras",
+		"thumbnails": [
+			"url1",
+			"url2",
+			"url3"
+		],
+		"id": 10
+	},
+	{
+		"title": "Sony PlayStation 5",
+		"description": "Consola de videojuegos",
+		"code": "hghgt567",
+		"price": 5000000,
+		"status": true,
+		"stock": 3,
+		"category": "videojusegos",
+		"thumbnails": [
+			"url1",
+			"url2",
+			"url3"
+		],
+		"id": 11
+	},
+	{
+		"title": "Sony PdddlayStation 5",
+		"description": "Consola de videojuegos",
+		"code": "hghgaaasssst567",
+		"price": 5000000,
+		"status": true,
+		"stock": 3,
+		"category": "videojusegos",
+		"thumbnails": [
+			"url1",
+			"url2",
+			"url3"
+		],
+		"id": 12
+	}
 ]
