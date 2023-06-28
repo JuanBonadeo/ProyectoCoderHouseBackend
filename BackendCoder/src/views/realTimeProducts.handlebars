@@ -13,10 +13,6 @@
     <input style="margin-bottom: 0.5rem" id="price">
     <br>
 
-    {{!-- <label>URL de la miniatura:</label>
-    <input id="thumbnails">
-    <br> --}}
-
     <label>Code:</label>
     <input style="margin-bottom: 0.5rem" id="code">
     <br>
@@ -29,16 +25,23 @@
     <input style="margin-bottom: 0.5rem" id="category">
     <br>
 
-    <label>Status:</label>
-    <input style="margin-bottom: 0.5rem" id="status">
-    <br>
 
     <button type="submit" id="add-product-btn">Agregar producto</button>
 </form>
 
 <h1>Productos en tiempo real: </h1>
 <div id="products-container">
-  {{!-- Aca van los productos --}}
+  {{#each products}}
+<div style="border: 1px solid #000; border-radius: 1rem; padding: 1rem; margin-bottom: 1rem">
+  <p>Title: {{this.title}}</p>
+  <p>Description: {{this.description}}</p>
+  <p>Price: {{this.price}}</p>
+  <p>Stock: {{this.stock}}</p>
+
+  <input id="{{this._id}}" type="number">
+  <button onclick='addToCart("{{this.stock}}", "{{this._id}}")'>AGREGAR AL CARRITO</button>
+</div>
+{{/each}}
 </div>
 
 <script src="/socket.io/socket.io.js"></script>

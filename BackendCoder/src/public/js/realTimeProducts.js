@@ -4,6 +4,7 @@ let addProductBtn = document.getElementById("add-product-btn")
 
 // Socket.on
 
+
 socket.on("update-products", (products) => {
   let productsContainer = document.getElementById("products-container")
   productsContainer.innerHTML = ""
@@ -14,6 +15,7 @@ socket.on("update-products", (products) => {
       <p> Title: ${product.title} </p>
       <p> Description: ${product.description} </p>
       <p> Price: ${product.price} </p>
+      <p> Stock: ${product.stock} </p>
       <button id=${product.id} onclick="deleteProduct(this)"> Borrar </button>
     `
 

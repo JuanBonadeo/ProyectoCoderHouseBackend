@@ -1,38 +1,63 @@
 import { Router } from "express";
-import CartManager from "../DAOs/CartManagerMongo.class.js";
+import CartManager from "../daos/mongodb/CartManager.class.js";
 import __dirname from "../utils.js";
 
-
-let cartManager = new CartManager()
+let cartManager = new CartManager();
 
 const router = Router();
 
-router.get('/:cid', async (req, res) => {
-  let id = req.params.cid
+router.get("/:cid", async (req, res) => {
+  let id = req.params.cid;
 
-  let cart = await cartManager.getCartById(id)
+  let cart = await cartManager.getCartById(id);
 
   if (!cart) {
-    res.send("No se encontró el carrito")
-    return
+    res.send("No se encontró el carrito");
+    return;
   }
 
-  res.send(cart.products)
-})
+  res.send(cart);
+});
 
-router.post('/', async (req, res) => {
-  await cartManager.createCart()
+router.get("/", async (req, res) => {
+  let carts = await cartManager.getAllCarts();
 
-  res.send({status: "success"})
-})
+  if (!carts) {
+    res.send("No se encontró el carrito");
+    return;
+  }
 
-router.post('/:cid/product/:pid', async (req, res) => {
-  let cartId = req.params.cid
-  let productId = req.params.pid
+  res.send(carts);
+});
 
-  await cartManager.addProductToCart(cartId, productId)
+router.post("/", async (req, res) => {
+  await cartManager.createCart();
 
-  res.send({status: "success"})
-})
+  res.send({ status: "success" });
+});
 
-export default router
+router.post("/:cid/product/:pid", async (req, res) => {
+  let cartId = req.params.cid;
+  let productId = req.params.pid;
+
+  await cartManager.addProductToCart(cartId, productId);
+
+  res.send({ status: "success" });
+});
+
+router.delete("/:cid/product/:pid", async (req, res) => {
+  let cartId = req.params.cid;
+  let productId = req.params.pid;
+
+  await cartManager.deleteProductFromCart(cartId, productId);
+
+  res.send({ status: "success" });
+});
+
+router.delete("/:cid", async (req, res) => {
+  let cartId = req.params.cid;
+  await cartManager.deleteAllProductsFromCart(cartId);
+  res.send({ status: "success" });
+});
+
+export default router;

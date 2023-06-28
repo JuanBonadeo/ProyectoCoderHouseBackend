@@ -1,22 +1,28 @@
 import { Router } from 'express';
 import __dirname from "../utils.js"
-import ProductManager from '../DAOs/ProductManagerMongo.class.js';
+import ProductManager from '../daos/mongodb/ProductManager.class.js';
+
 
 
 let productManager = new ProductManager()
 
 const router = Router();
 
-router.get('/', async (req,res)=>{
+router.get('/', async (req, res) => {
   let products = await productManager.getProducts();
-  res.render('home', {
+  
+  res.render('products', {
     title: "Inicio",
-    products: products
+    
   });
-})
+});
 
 router.get('/realtimeproducts', async (req,res)=>{
   res.render('realTimeProducts');
 })
+
+router.get('/chat', (req, res) => {
+  res.render('chat', {});
+});
 
 export default router;
