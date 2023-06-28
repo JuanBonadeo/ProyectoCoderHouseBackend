@@ -59,24 +59,6 @@ socketServer.on("connection", async (socket) => {
   });
 });
 
-// chats sockets
-
-const messages = [];
-
-
-socketServer.on('chatConnection', socket => {
-    console.log('New client connected');
-
-    socket.on('message', data => {
-        messages.push(data)
-        io.emit('logs', messages)
-    });
-});
-
-app.use((req, res, next) => {
-  req.socketServer = socketServer;
-  next()
-});
 
 app.use("/", routerViews);
 app.use("/products", routerProducts);

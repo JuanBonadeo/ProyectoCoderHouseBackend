@@ -18,7 +18,6 @@ router.get("/", async (req, res) => {
   } else if (stock === "false") {
     stock = false;
   }
-  console.log(limit, page, sort)
   let products = await productManager.getProducts(
     limit,
     page,

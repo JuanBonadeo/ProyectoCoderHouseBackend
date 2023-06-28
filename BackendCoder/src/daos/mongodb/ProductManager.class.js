@@ -35,6 +35,7 @@ export default class ProductManager {
       page: page,
       sort: { price: sort },
     });
+    result.docs = result.docs.map((product) => product.toObject());
     return result;
   }
 

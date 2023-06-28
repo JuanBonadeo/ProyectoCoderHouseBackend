@@ -1,0 +1,22 @@
+<h1>Productos: </h1> 
+{{#each products}}
+<div style="border: 1px solid #000; border-radius: 1rem; padding: 1rem; margin-bottom: 1rem">
+  <p> Title: {{this.title}} </p>
+  <p> Description: {{this.description}} </p>
+  <p> Price: {{this.price}} </p>
+  <p> Stock: {{this.stock}} </p>
+  {{!-- <button onclick="addProductToCart( "6487ad36edaadc46114c63c1",  {{this.id}})">AGREGAR AL CARRITO </button>  --}}
+  
+  
+<input id="{{this._id}}" type="number"></input> 
+<button  onclick="alert2("{{this.stock}}", "{{this.id}}")">AGREGAR AL CARRITO </button> 
+</div>
+
+{{/each}} 
+
+
+<a href={{prev}} id="prev-btn">PREVIO</a> 
+<a href={{next}} id="next-btn">NEXT</a>  
+  
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/products.js"></script>
