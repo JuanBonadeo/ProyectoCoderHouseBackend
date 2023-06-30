@@ -34,10 +34,12 @@ export default class ProductManager {
       limit: limit,
       page: page,
       sort: { price: sort },
+      lean:true
     });
-    result.docs = result.docs.map((product) => product.toObject());
     return result;
   }
+
+  
 
   async getProductById(id) {
     let result = await productsModel.findOne({ _id: id });

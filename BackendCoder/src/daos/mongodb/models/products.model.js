@@ -28,10 +28,6 @@ const ProductsSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    
-    
-    
-
 })
 
 ProductsSchema.plugin(mongoosePaginate)

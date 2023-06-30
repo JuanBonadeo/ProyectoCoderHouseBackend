@@ -1,22 +1,45 @@
-<h1>Productos: </h1> 
-{{#each products}}
-<div style="border: 1px solid #000; border-radius: 1rem; padding: 1rem; margin-bottom: 1rem">
-  <p> Title: {{this.title}} </p>
-  <p> Description: {{this.description}} </p>
-  <p> Price: {{this.price}} </p>
-  <p> Stock: {{this.stock}} </p>
-  {{!-- <button onclick="addProductToCart( "6487ad36edaadc46114c63c1",  {{this.id}})">AGREGAR AL CARRITO </button>  --}}
-  
-  
-<input id="{{this._id}}" type="number"></input> 
-<button  onclick="alert2("{{this.stock}}", "{{this.id}}")">AGREGAR AL CARRITO </button> 
+{{#if isValid}}
+<div class="container">
+  <table class="table">
+    <thead>
+        <th>Titulo</th>
+        <th>Descripcion</th>
+        <th>Precio</th>
+        <th>Codigo</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each docs}}
+        <tr>
+          <td>{{this.title}}</td>
+          <td>{{this.description}}</td>
+          <td>${{this.price}}</td>
+          <td>{{this.code}}</td>            
+          <td>
+          <a href="products/{{this.id}}">Ver</a> 
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </div>
 
-{{/each}} 
+<br/>
+<div>
+    {{#if hasPrevPage}}
+        <a href={{this.prevLink}}><< Anterior</a>
+    {{/if}}
+    &nbsp;
+    {{this.page}}
+    &nbsp;
+    {{#if hasNextPage}}
+        <a href={{this.nextLink}}>Siguiente >></a>
+    {{/if}} 
+</div>
 
 
-<a href={{prev}} id="prev-btn">PREVIO</a> 
-<a href={{next}} id="next-btn">NEXT</a>  
-  
+{{/if}}
+
+<script src="../public/js/products.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script src="/js/products.js"></script>

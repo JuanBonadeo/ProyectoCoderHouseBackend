@@ -10,8 +10,8 @@ router.get("/", async (req, res) => {
   let limit = Number(req.query.limit) || 10;
   let page = Number(req.query.page) || 1;
   let sort = Number(req.query.sort) || 0;
-  let filtro = req.query.filtro;
-  let filtroVal = req.query.filtroVal;
+  let filtro = req.query.filtro || '';
+  let filtroVal = req.query.filtroVal || '';
   let stock = req.query.stock;
   if (stock === "true") {
     stock = true;
@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
     stock
   );
 
-  res.send({ products }); 
+  res.send(products ); 
 });
 
 router.get("/:pid", async (req, res) => {
@@ -57,7 +57,7 @@ router.put("/:pid", async (req, res) => {
   let newProduct = req.body;
 
   await productManager.updateProduct(id, newProduct);
-
+  req.socketServer.sockets.emit("update-products", products);
   res.send({ status: "success" });
 });
 
