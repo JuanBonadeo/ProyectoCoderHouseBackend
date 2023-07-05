@@ -2,11 +2,14 @@ import { Router } from 'express';
 import __dirname from "../utils.js"
 import ProductManager from '../daos/mongodb/ProductManager.class.js';
 import MessagesManager from '../daos/mongodb/MessagesManager.class.js';
+import CartManager from '../daos/mongodb/CartManager.class.js';
+
 
 
 
 let productManager = new ProductManager()
 let messagesManager = new MessagesManager();
+let cartManager = new CartManager()
 
 const router = Router();
 
@@ -38,6 +41,17 @@ router.get('/products/:id',async (req,res)=>{
   res.render('product',result) 
 })
 
+router.get('/carts/:id',async (req,res)=>{ 
+  const id = req.params.id;
+try{
+  const cart = await cartManager.getAllProductsFromCart(id);
+  res.render('cart',cart) 
+}catch (error) {
+  console.error(error);
+  res.status(400).send(error.message); // Envía el mensaje de error al cliente de Postman
+}
+
+})
 
 
 router.get('/messages', async (req, res) => {
@@ -47,9 +61,10 @@ router.get('/messages', async (req, res) => {
 });
 
 
-router.get('/realtimeproducts', async (req,res)=>{
-  res.render('realTimeProducts');
-})
+router.get('/realtimeproducts', async (req, res) => {
+  const products= await productManager.getProducts(req.query.limit);
+    res.render('realTimeProducts', { products: products, style: "style.css", title: "Productos" })
 
+});
 
 export default router;

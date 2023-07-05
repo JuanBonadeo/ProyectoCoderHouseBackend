@@ -1,5 +1,6 @@
 import express from "express";
 import handlebars from "express-handlebars";
+import bodyParser from "body-parser";
 
 import __dirname from "./utils.js";
 
@@ -13,6 +14,7 @@ import { Server } from "socket.io";
 
 import ProductManager from "./daos/mongodb/ProductManager.class.js";
 import MessagesManager from './daos/mongodb/MessagesManager.class.js';
+import CartManager from "./daos/mongodb/CartManager.class.js";
 export const productManager = new ProductManager();
 export const messagesManager = new MessagesManager();
 
@@ -20,6 +22,7 @@ export const messagesManager = new MessagesManager();
 
 const app = express();
 
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -41,30 +44,27 @@ const socketServer = new Server(expressServer);
 
 const messages = [];
 
-socketServer.on("connection", async (socket) => {
-  console.log("Nuevo Cliente conectado " + socket.id);
-
-  // Se envian todos los productos al conectarse
-  socket.emit("load-products", await productManager.getProducts());
-
-  socket.on("messages", data => {
-    console.log(data)
-  })
-  socket.on("messages", data => {
-    console.log(data)
-    messagesManager.Create(data.user,data.message)
-    messages.push(data)
-    socketServer.emit("print", messages)
-  })
+socketServer.on("connection", (socket) => {
+  console.log("Nuevo Cliente conectado " + socket.id); 
   
+  socketServer.emit('cargarProductos', productos);
+
+  socket.on("message", data => {
+      console.log(data);
+  }); 
+
+  socket.on("message", (data) => {
+    console.log(data)
+    messagesManager.create(data.user,data.message);
+    mensajes.push(data); 
+    socketServer.emit("imprimir", mensajes);
+  });
+
   socket.on("autenticatedUser", (data) => {
     socket.broadcast.emit("newUserAlert", data);
   });
-  
-  socket.on("delete-product", async (productID) => {
-    await productManager.deleteProduct(productID);
-    socketServer.emit("update-products", await productManager.getProducts());
-  });
+
+
 });
 
   

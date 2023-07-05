@@ -7,9 +7,22 @@ let cartManager = new CartManager();
 const router = Router();
 
 router.get("/:cid", async (req, res) => {
-  let id = req.params.cid;
+  let cid = req.params.cid;
 
-  let cart = await cartManager.getCartById(id);
+  let cart = await cartManager.getCartById(cid);
+
+  if (!cart) {
+    res.send("No se encontró el carrito");
+    return;
+  }
+
+  res.send(cart);
+});
+
+router.get("/c/:cid", async (req, res) => {
+  let cid = req.params.cid;
+
+  let cart = await cartManager.getAllProductsFromCart(cid);
 
   if (!cart) {
     res.send("No se encontró el carrito");
@@ -36,27 +49,40 @@ router.post("/", async (req, res) => {
   res.send({ status: "success" });
 });
 
-router.post("/:cid/product/:pid", async (req, res) => {
-  let cartId = req.params.cid;
-  let productId = req.params.pid;
+router.post("/:cid/product/:pid", async (req, res) => { 
+  const cid = req.params.cid;
+  const pid = req.params.pid;
+  const cart = await cartManager.addProductToCart(cid,pid)
+  res.send(cart)
 
-  await cartManager.addProductToCart(cartId, productId);
+  
+});
 
-  res.send({ status: "success" });
+router.put("/:cid/product/:pid", async (req, res) => { 
+  const cid = req.params.cid;
+  const pid = req.params.pid;
+  const quantity = req.body.quantity
+  try{
+    const cart = await cartManager.updateProduct(cid,pid,quantity)
+    res.send({ status: "success" });
+  } catch(e) {
+    res.status(404).send({error: e.message})
+  }
+  
 });
 
 router.delete("/:cid/product/:pid", async (req, res) => {
-  let cartId = req.params.cid;
-  let productId = req.params.pid;
+  let cid = req.params.cid;
+  let pid = req.params.pid;
 
-  await cartManager.deleteProductFromCart(cartId, productId);
+  await cartManager.deleteProductFromCart(cid, pid);
 
   res.send({ status: "success" });
 });
 
 router.delete("/:cid", async (req, res) => {
-  let cartId = req.params.cid;
-  await cartManager.deleteAllProductsFromCart(cartId);
+  let cid = req.params.cid;
+  await cartManager.deleteAllProductsFromCart(cid);
   res.send({ status: "success" });
 });
 

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const collection = "carts";
 
 const cartSchema = new mongoose.Schema({
@@ -8,11 +9,14 @@ const cartSchema = new mongoose.Schema({
         product: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "products",
+          
         },
+        quantity:{
+          type:Number
+        }
       },
-    ],
+    ]
   },
 });
-
 
 export const cartModel = mongoose.model(collection, cartSchema)

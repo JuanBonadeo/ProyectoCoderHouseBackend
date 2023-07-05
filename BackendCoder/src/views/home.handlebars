@@ -3,6 +3,7 @@
   <table class="table">
     <thead>
         <th>Titulo</th>
+        <th>Marca</th>
         <th>Descripcion</th>
         <th>Precio</th>
         <th>Codigo</th>
@@ -13,11 +14,12 @@
       {{#each docs}}
         <tr>
           <td>{{this.title}}</td>
+          <td>{{this.category}}</td>
           <td>{{this.description}}</td>
           <td>${{this.price}}</td>
           <td>{{this.code}}</td>            
           <td>
-          <a href="products/{{this.id}}">Ver</a> 
+          <a href="products/{{this.id}}">Ver Mas</a> 
           </td>
         </tr>
       {{/each}}
@@ -26,7 +28,7 @@
 </div>
 
 <br/>
-<div>
+<div class="paginate">
     {{#if hasPrevPage}}
         <a href={{this.prevLink}}><< Anterior</a>
     {{/if}}
