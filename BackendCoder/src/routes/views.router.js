@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import __dirname from "../utils.js"
+
 import ProductManager from '../daos/mongodb/ProductManager.class.js';
 import MessagesManager from '../daos/mongodb/MessagesManager.class.js';
 import CartManager from '../daos/mongodb/CartManager.class.js';
@@ -32,6 +32,7 @@ router.get('/products',async (req,res)=>{
   result.prevLink = result.hasPrevPage?`http://localhost:8080/products?page=${result.prevPage}&limit=${result.limit}`:'';
   result.nextLink = result.hasNextPage?`http://localhost:8080/products?page=${result.nextPage}&limit=${result.limit}`:'';
   result.isValid= !(page<=0||page>result.totalPages)
+  result.user=req.session.user
   res.render('home',result) 
 })
 
@@ -66,5 +67,24 @@ router.get('/realtimeproducts', async (req, res) => {
     res.render('realTimeProducts', { products: products, style: "style.css", title: "Productos" })
 
 });
+
+
+router.get('/register', (req, res) => {
+  res.render('register');
+})
+
+router.get('/login', (req, res) => {
+  res.render('login');
+})
+
+router.get('/', (req, res) => {
+  res.render('profile', {
+      user: req.session.user
+  });
+})
+
+router.get('/resetPassword',(req,res)=>{
+  res.render('resetPassword');
+})
 
 export default router;
